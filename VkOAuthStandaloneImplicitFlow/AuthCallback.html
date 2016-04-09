@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Авторизация</title>
+    <style>
+        body {
+            background-color: #fff;
+            color: #666;
+            text-align: center;
+            font-family: arial, sans-serif;
+        }
+
+        div.dialog {
+            width: 30em;
+            padding: 1em 4em;
+            margin: 4em auto 0 auto;
+        }
+
+        h1 {
+            font-size: 200%;
+            line-height: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="dialog">
+        <h1>Авторизация</h1>
+        <p id="content">Пожалуйста подождите.</p>
+    </div>
+
+    <script src='https://code.jquery.com/jquery-1.12.0.min.js'></script>
+    <script>
+            var hashValues = location.href.substr(location.href.indexOf('#')+1);
+            $.get('/callback?' + hashValues);
+
+            if(hashValues.indexOf('error') === -1) {
+                var message = 'Авторизация прошла успешно.';
+            } else {
+                var message = 'Авторизация не удалась. Пожалуйста попробуйте ещё раз.';
+            }
+
+            $('#content').text(message);
+    </script>
+</body>
+</html>
